@@ -5,50 +5,7 @@
 	name = "projectile gun"
 	icon_state = "debug"
 	w_class = WEIGHT_CLASS_NORMAL
-	pickup_sound = 'sound/items/handling/gun/gun_pick_up.ogg'
-	drop_sound = 'sound/items/handling/gun/gun_drop.ogg'
 	sound_vary = TRUE
-
-	///sound when inserting magazine
-	var/load_sound = 'sound/items/weapons/gun/general/magazine_insert_full.ogg'
-	///sound when inserting an empty magazine
-	var/load_empty_sound = 'sound/items/weapons/gun/general/magazine_insert_empty.ogg'
-	///volume of loading sound
-	var/load_sound_volume = 40
-	///whether loading sound should vary
-	var/load_sound_vary = TRUE
-	///sound of racking
-	var/rack_sound = 'sound/items/weapons/gun/general/bolt_rack.ogg'
-	///volume of racking
-	var/rack_sound_volume = 60
-	///whether racking sound should vary
-	var/rack_sound_vary = TRUE
-	///sound of when the bolt is locked back manually
-	var/lock_back_sound = 'sound/items/weapons/gun/general/slide_lock_1.ogg'
-	///volume of lock back
-	var/lock_back_sound_volume = 60
-	///whether lock back varies
-	var/lock_back_sound_vary = TRUE
-	///Sound of ejecting a magazine
-	var/eject_sound = 'sound/items/weapons/gun/general/magazine_remove_full.ogg'
-	///sound of ejecting an empty magazine
-	var/eject_empty_sound = 'sound/items/weapons/gun/general/magazine_remove_empty.ogg'
-	///volume of ejecting a magazine
-	var/eject_sound_volume = 40
-	///whether eject sound should vary
-	var/eject_sound_vary = TRUE
-	///sound of dropping the bolt or releasing a slide
-	var/bolt_drop_sound = 'sound/items/weapons/gun/general/bolt_drop.ogg'
-	///volume of bolt drop/slide release
-	var/bolt_drop_sound_volume = 60
-	///empty alarm sound (if enabled)
-	var/empty_alarm_sound = 'sound/items/weapons/gun/general/empty_alarm.ogg'
-	///empty alarm volume sound
-	var/empty_alarm_volume = 70
-	///whether empty alarm sound varies
-	var/empty_alarm_vary = TRUE
-	///Whether our gun clicks when it approaches an empty magazine/chamber
-	var/click_on_low_ammo = TRUE
 
 	/// What type (includes subtypes) of magazine will this gun accept being put into it
 	var/obj/item/ammo_box/magazine/accepted_magazine_type = /obj/item/ammo_box/magazine/m10mm
@@ -56,52 +13,15 @@
 	var/spawnwithmagazine = TRUE
 	/// Change this if the gun should spawn with a different magazine type to what accepted_magazine_type defines. Will create errors if not a type or subtype of accepted magazine.
 	var/obj/item/ammo_box/magazine/spawn_magazine_type
-	///Whether the sprite has a visible magazine or not
-	var/mag_display = TRUE
-	///Whether the sprite has a visible ammo display or not
-	var/mag_display_ammo = FALSE
-	///Whether the sprite has a visible indicator for being empty or not.
-	var/empty_indicator = FALSE
-	///Whether the gun alarms when empty or not.
-	var/empty_alarm = FALSE
-	///Whether the gun supports multiple special mag types
-	var/special_mags = FALSE
-	/**
-	* The bolt type controls how the gun functions, and what iconstates you'll need to represent those functions.
-	* BOLT_TYPE_STANDARD - The Slide doesn't lock back.  Clicking on it will only cycle the bolt.  Only 1 sprite.
-	* BOLT_TYPE_OPEN - Same as standard, but it fires directly from the magazine - No need to rack.  Doesn't hold the bullet when you drop the mag.
-	* BOLT_TYPE_LOCKING - This is most handguns and bolt action rifles.  The bolt will lock back when it's empty.  You need yourgun_bolt and yourgun_bolt_locked icon states.
-	* BOLT_TYPE_NO_BOLT - This is shotguns and revolvers.  clicking will dump out all the bullets in the gun, spent or not.
-	* see combat.dm defines for bolt types: BOLT_TYPE_STANDARD; BOLT_TYPE_LOCKING; BOLT_TYPE_OPEN; BOLT_TYPE_NO_BOLT
-	**/
-	var/bolt_type = BOLT_TYPE_STANDARD
-	///Used for locking bolt and open bolt guns. Set a bit differently for the two but prevents firing when true for both.
-	var/bolt_locked = FALSE
+
+
+
 	var/show_bolt_icon = TRUE ///Hides the bolt icon.
-	///Whether the gun has to be racked each shot or not.
-	var/semi_auto = TRUE
-	///Actual magazine currently contained within the gun
-	var/obj/item/ammo_box/magazine/magazine
-	///whether the gun ejects the chambered casing
-	var/casing_ejector = TRUE
-	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
-	var/internal_magazine = FALSE
-	///Phrasing of the bolt in examine and notification messages; ex: bolt, slide, etc.
-	var/bolt_wording = "bolt"
-	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
-	var/magazine_wording = "magazine"
-	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
-	var/cartridge_wording = "bullet"
-	///length between individual racks
-	var/rack_delay = 5
-	///time of the most recent rack, used for cooldown purposes
-	var/recent_rack = 0
-	///Whether the gun can be tacloaded by slapping a fresh magazine directly on it
-	var/tac_reloads = TRUE //Snowflake mechanic no more.
+
+
 	///Whether we need to hold the gun in our off-hand to load it. FALSE means we can load it literally anywhere. Important for weapons like bows.
 	var/must_hold_to_load = FALSE
-	///Whether the gun can be sawn off by sawing tools
-	var/can_be_sawn_off = FALSE
+
 	var/suppressor_x_offset ///pixel offset for the suppressor overlay on the x axis.
 	var/suppressor_y_offset ///pixel offset for the suppressor overlay on the y axis.
 	/// Check if you are able to see if a weapon has a bullet loaded in or not.

@@ -1,4 +1,70 @@
 /obj/item/gun/ballistic/automatic/pistol
+	bolt_type = BOLT_TYPE_LOCKING
+	w_class = WEIGHT_CLASS_NORMAL
+
+	vary_fire_sound = FALSE
+	fire_sound_volume = 90
+	bolt_wording = "slide"
+	weapon_weight = WEAPON_LIGHT
+	pickup_sound =
+
+	//recoil = 0.5 // apogee wants bloom, this is a placeholder until then to simulate the same concept. //UPDATE ive changed my mind on this, however i would
+	recoil_unwielded = 3
+	recoil_backtime_multiplier = 1
+
+	zoom_amt = PISTOL_ZOOM
+
+	wield_delay = 0.2 SECONDS
+	fire_delay = 0.2 SECONDS
+	spread = 5
+	spread_unwielded = 7
+
+	wield_slowdown = PISTOL_SLOWDOWN
+	aimed_wield_slowdown = PISTOL_AIM_SLOWDOWN
+
+	muzzleflash_iconstate = "muzzle_flash_light"
+	light_range = 1
+
+	refused_attachments = list(
+		/obj/item/attachment/gun,
+		/obj/item/attachment/sling
+		)
+
+/obj/item/gun/ballistic/automatic/pistol/commissar
+	name = "\improper Commissar"
+	desc = "A Nanotrasen-issue handgun, modified with a voice box to further enhance its effectiveness in troop discipline."
+	icon_state = "commander"
+	icon =
+	lefthand_file =
+	righthand_file =
+	mob_overlay_icon =
+
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo_type =
+	allowed_ammo_types = list(
+		,
+	)
+	var/funnysounds = TRUE
+	var/cooldown = 0
+	load_sound =
+	load_empty_sound =
+	eject_sound =
+	eject_empty_sound =
+
+	rack_sound =
+	lock_back_sound =
+	bolt_drop_sound =
+
+
+
+
+
+
+
+
+
+
+/obj/item/gun/ballistic/automatic/pistol
 	name = "\improper Makarov pistol"
 //	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	// NOVA EDIT: Original
 	desc = "A small, easily concealable 9x25mm Mk.12 handgun. Has a threaded barrel for suppressors."	// NOVA EDIT: Calibre rename
