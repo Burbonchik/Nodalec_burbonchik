@@ -148,6 +148,8 @@
 ///from base of datum/storage/handle_exit(): (datum/storage/storage)
 #define COMSIG_ITEM_UNSTORED "item_unstored"
 
+#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of obj/item/unique_action(): (mob/living/user)
+
 ///from base of obj/item/apply_fantasy_bonuses(): (bonus)
 #define COMSIG_ITEM_APPLY_FANTASY_BONUSES "item_apply_fantasy_bonuses"
 ///from base of obj/item/remove_fantasy_bonuses(): (bonus)

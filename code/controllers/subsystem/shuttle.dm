@@ -814,6 +814,26 @@ SUBSYSTEM_DEF(shuttle)
 		if(xs.len && ys.len)
 			.[port] = overlap
 
+/**
+ * This proc loads a shuttle from a specified template. If no destination port is specified, the shuttle will be
+ * spawned at a generated transit doc. Doing this is how most ships are loaded.
+ *
+ * * loading_template - The shuttle map template to load. Can NOT be null.
+ * * destination_port - The port the newly loaded shuttle will be sent to after being fully spawned in. If you want to have a transit dock be created, use [proc/load_template] instead. Should NOT be null.
+ **/
+/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, datum/overmap/ship/controlled/parent, obj/docking_port/stationary/destination_port)
+	if(!destination_port)
+		CRASH("No destination port specified for shuttle load, aborting.")
+	var/obj/docking_port/mobile/new_shuttle = load_template(loading_template, parent, FALSE)
+	var/result = new_shuttle.canDock(destination_port)
+	if((result != SHUTTLE_CAN_DOCK))
+		WARNING("Template shuttle [new_shuttle] cannot dock at [destination_port] ([result]).")
+		qdel(new_shuttle, TRUE)
+		return
+	new_shuttle.initiate_docking(destination_port)
+	return new_shuttle
+
+
 /datum/controller/subsystem/shuttle/proc/update_hidden_docking_ports(list/remove_turfs, list/add_turfs)
 	var/list/remove_images = list()
 	var/list/add_images = list()
@@ -858,7 +878,7 @@ SUBSYSTEM_DEF(shuttle)
  * * loading_template - шаблон шаттла для загрузки
  * * destination_port - порт к которому необходимо пристыковать шаттл после загрузки
 */
-/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port)
+/*/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port)
 	var/obj/docking_port/mobile/new_shuttle = load_template(loading_template)
 	if (!destination_port)
 		WARNING("Не был указан порт для стыковки, стыкуем корабль к сгенерированному транзитному порту")
@@ -868,7 +888,7 @@ SUBSYSTEM_DEF(shuttle)
 			CRASH("Шаттл не может быть пристыкован к указанному порту, прекращаем загрузку...")
 
 		new_shuttle.initiate_docking(destination_port)
-	return new_shuttle
+	return new_shuttle*/
 
 
 /**
@@ -1081,7 +1101,7 @@ SUBSYSTEM_DEF(shuttle)
 				. = TRUE
 				shuttle_loading = TRUE
 				// If successful, returns the mobile docking port
-				var/obj/docking_port/mobile/mdp = action_load(S, replace = TRUE)
+				var/obj/docking_port/mobile/mdp = action_load(replace = TRUE)
 				if(mdp)
 					user.forceMove(get_turf(mdp))
 					message_admins("[key_name_admin(usr)] load/replaced [mdp] with the shuttle manipulator.")
