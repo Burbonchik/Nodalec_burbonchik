@@ -1,6 +1,6 @@
 // 10mm
 
-/obj/item/ammo_casing/c10mm
+/*/obj/item/ammo_casing/c10mm
 	name = "10mm bullet casing"
 	desc = "A 10mm bullet casing."
 	caliber = CALIBER_10MM
@@ -50,6 +50,41 @@
 	name = "9mm incendiary bullet casing"
 	desc = "A 9mm incendiary bullet casing."
 	projectile_type = /obj/projectile/bullet/incendiary/c9mm
+*/
+// 9x18mm (Commander + SABR)
+
+/obj/item/ammo_casing/c9mm
+	name = "9x18mm bullet casing"
+	desc = "A 9x18mm bullet casing."
+	icon_state = "pistol-brass"
+	caliber = "9x18mm"
+	projectile_type = /obj/projectile/bullet/c9mm
+	stack_size = 15
+
+/obj/item/ammo_casing/c9mm/surplus
+	name = "9x18mm surplus bullet casing"
+	desc = "A 9x18mm surplus bullet casing."
+	bullet_skin = "surplus"
+	projectile_type = /obj/projectile/bullet/c9mm/surplus
+	wear_modifier = 2
+
+/obj/item/ammo_casing/c9mm/ap
+	name = "9x18mm armor-piercing bullet casing"
+	desc = "A 9x18mm armor-piercing bullet casing."
+	bullet_skin = "ap"
+	projectile_type = /obj/projectile/bullet/c9mm/ap
+
+/obj/item/ammo_casing/c9mm/hp
+	name = "9x18mm hollow point bullet casing"
+	desc = "A 9x18mm hollow point bullet casing."
+	bullet_skin = "hollow"
+	projectile_type = /obj/projectile/bullet/c9mm/hp
+
+/obj/item/ammo_casing/c9mm/rubber
+	name = "9x18mm rubber bullet casing"
+	desc = "A 9x18mm rubber bullet casing."
+	bullet_skin = "rubber"
+	projectile_type = /obj/projectile/bullet/c9mm/rubber
 
 // .50AE (Desert Eagle)
 
